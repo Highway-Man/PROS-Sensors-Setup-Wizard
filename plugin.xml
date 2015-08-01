@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            id="tk.Knaup.prosSensorsSetupWizard.contribution1"
+            objectClass="org.eclipse.core.resources.IProject">
+         <menu
+               id="tk.Knaup.prosSensorsSetupWizard.menu1"
+               label="Setup"
+               path="additions">
+            <separator
+                  name="group1">
+            </separator>
+         </menu>
+         <action
+               class="tk.knaup.prossensorssetupwizard.popup.actions.NewAction"
+               enablesFor="1"
+               id="tk.Knaup.prosSensorsSetupWizard.newAction"
+               label="Sensors Setup"
+               menubarPath="tk.Knaup.prosSensorsSetupWizard.menu1/group1">
+         </action>
+      </objectContribution>
+   </extension>
+
+</plugin>
