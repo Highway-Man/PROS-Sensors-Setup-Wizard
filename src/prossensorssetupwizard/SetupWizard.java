@@ -12,8 +12,8 @@ public class SetupWizard extends Wizard{
 	
 	public static Composite container;
 	
-	protected PageOne one;
-	protected PageTwo two;
+	protected PageEncoder encoder;
+	protected PageInitial initial;
 	protected PageGyro gyro;
 	protected PageUltrasonic ultrasonic;
 	protected PageIme ime;
@@ -37,8 +37,8 @@ public class SetupWizard extends Wizard{
 	
 	@Override
 	public void addPages(){
-		one = new PageOne();
-		two = new PageTwo();
+		encoder = new PageEncoder();
+		initial = new PageInitial();
 		gyro = new PageGyro();
 		ultrasonic = new PageUltrasonic();
 		ime = new PageIme();
@@ -46,8 +46,8 @@ public class SetupWizard extends Wizard{
 		input = new PageDigitalIn();
 		output = new PageDigitalOut();
 		end = new PageEnd();
-		addPage(two);
-		addPage(one);
+		addPage(initial);
+		addPage(encoder);
 		addPage(gyro);
 		addPage(ultrasonic);
 		addPage(ime);
@@ -57,35 +57,22 @@ public class SetupWizard extends Wizard{
 		addPage(end);
 	}
 	
-	void updateSelectedPorts(Class page){
-		try {
-            Object ob = page.newSelectedPorts();
-        } catch (InstantiationException ex) {
-           
-        } catch (IllegalAccessException ex) {
-            
-        }
-	}
-	
-	boolean portsConflict(){
-		if()
-	}
 	
 	@Override
 	public IWizardPage getNextPage(IWizardPage currentPage) {
-	    if (PageTwo.getCheckSelection(PageTwo.check1) && !PageOne.complete) 
-	       return one;
-	    else if (PageTwo.getCheckSelection(PageTwo.check2) && !PageGyro.complete)
+	    if (PageInitial.getCheckSelection(PageInitial.check1) && !PageEncoder.complete) 
+	       return encoder;
+	    else if (PageInitial.getCheckSelection(PageInitial.check2) && !PageGyro.complete)
 	    	return gyro;
-	    else if (PageTwo.getCheckSelection(PageTwo.checkUlt) && !PageUltrasonic.complete)
+	    else if (PageInitial.getCheckSelection(PageInitial.checkUlt) && !PageUltrasonic.complete)
 	    	return ultrasonic;
-	    else if(PageTwo.getCheckSelection(PageTwo.checkIme) && !PageIme.complete)
+	    else if(PageInitial.getCheckSelection(PageInitial.checkIme) && !PageIme.complete)
 	    	return ime;
-	    else if (PageTwo.getCheckSelection(PageTwo.checkLcd) && !PageLcd.complete)
+	    else if (PageInitial.getCheckSelection(PageInitial.checkLcd) && !PageLcd.complete)
 	    	return lcd;
-	    else if (PageTwo.getCheckSelection(PageTwo.checkInput) && PageDigitalIn.complete != true)
+	    else if (PageInitial.getCheckSelection(PageInitial.checkInput) && !PageDigitalIn.complete)
 	    	return input;
-	    else if (PageTwo.getCheckSelection(PageTwo.checkOutput) && !PageDigitalOut.complete)
+	    else if (PageInitial.getCheckSelection(PageInitial.checkOutput) && !PageDigitalOut.complete)
 	    	return output;
 	    else{ 
 	    	canFinish = true;

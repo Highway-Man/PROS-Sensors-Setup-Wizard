@@ -17,7 +17,7 @@ import org.eclipse.swt.widgets.Spinner;
 import org.eclipse.swt.widgets.Text;
 
 
-public class PageOne extends WizardPage {
+public class PageEncoder extends WizardPage {
 	private Text text1;
 	private Composite container;
 	public Spinner numberQuads;
@@ -48,7 +48,7 @@ public class PageOne extends WizardPage {
 	boolean complete2;
 	public static boolean complete;
 
-	public PageOne(){
+	public PageEncoder(){
 		super("Encoder Page");
 		setTitle("Encoder Configuration");
 		setDescription("Configure up to 5 encoders. Leave fields blank for unused encoders.");

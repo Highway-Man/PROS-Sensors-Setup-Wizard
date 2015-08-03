@@ -7,7 +7,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
-public class PageTwo extends WizardPage{
+public class PageInitial extends WizardPage{
 	
 	private Composite container;
 	public static Button check2;
@@ -18,10 +18,10 @@ public class PageTwo extends WizardPage{
 	public static Button checkInput;
 	public static Button checkOutput;
 	
-	public PageTwo(){
-		super("Second Page");
-		setTitle("Second Page");
-		setDescription("Now this is the second page");
+	public PageInitial(){
+		super("Initial Page");
+		setTitle("Welcome to the PROS Sensors Setup Wizard");
+		setDescription("Please select the types of sensors to configure");
 		
 	}
 	

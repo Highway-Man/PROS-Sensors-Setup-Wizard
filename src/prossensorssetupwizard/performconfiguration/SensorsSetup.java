@@ -5,40 +5,40 @@ import prossensorssetupwizard.PageDigitalOut;
 import prossensorssetupwizard.PageGyro;
 import prossensorssetupwizard.PageIme;
 import prossensorssetupwizard.PageLcd;
-import prossensorssetupwizard.PageOne;
-import prossensorssetupwizard.PageTwo;
+import prossensorssetupwizard.PageEncoder;
+import prossensorssetupwizard.PageInitial;
 import prossensorssetupwizard.PageUltrasonic;
 
 public class SensorsSetup {
 	
 	static String getEncoderCode() {
 
-		String encoder1Init = PageOne.enc1Name.getText() + " = encoderInit(" + PageOne.combo11.getText() + ","
-				+ PageOne.combo12.getText() + "," + PageOne.enc1Rev.getSelection() + ");";
+		String encoder1Init = PageEncoder.enc1Name.getText() + " = encoderInit(" + PageEncoder.combo11.getText() + ","
+				+ PageEncoder.combo12.getText() + "," + PageEncoder.enc1Rev.getSelection() + ");";
 
-		String encoder2Init = PageOne.enc2Name.getText() + " = encoderInit(" + PageOne.combo21.getText() + ","
-				+ PageOne.combo22.getText() + "," + PageOne.enc2Rev.getSelection() + ");";
+		String encoder2Init = PageEncoder.enc2Name.getText() + " = encoderInit(" + PageEncoder.combo21.getText() + ","
+				+ PageEncoder.combo22.getText() + "," + PageEncoder.enc2Rev.getSelection() + ");";
 
-		String encoder3Init = PageOne.enc3Name.getText() + " = encoderInit(" + PageOne.combo31.getText() + ","
-				+ PageOne.combo32.getText() + "," + PageOne.enc3Rev.getSelection() + ");";
+		String encoder3Init = PageEncoder.enc3Name.getText() + " = encoderInit(" + PageEncoder.combo31.getText() + ","
+				+ PageEncoder.combo32.getText() + "," + PageEncoder.enc3Rev.getSelection() + ");";
 		
-		String encoder4Init = PageOne.enc4Name.getText() + " = encoderInit(" + PageOne.combo41.getText() + ","
-				+ PageOne.combo42.getText() + "," + PageOne.enc4Rev.getSelection() + ");";
-		String encoder5Init = PageOne.enc5Name.getText() + " = encoderInit(" + PageOne.combo51.getText() + ","
-				+ PageOne.combo52.getText() + "," + PageOne.enc5Rev.getSelection() + ");";
+		String encoder4Init = PageEncoder.enc4Name.getText() + " = encoderInit(" + PageEncoder.combo41.getText() + ","
+				+ PageEncoder.combo42.getText() + "," + PageEncoder.enc4Rev.getSelection() + ");";
+		String encoder5Init = PageEncoder.enc5Name.getText() + " = encoderInit(" + PageEncoder.combo51.getText() + ","
+				+ PageEncoder.combo52.getText() + "," + PageEncoder.enc5Rev.getSelection() + ");";
 
 		String encoderAllInit;
 
-		if (PageOne.combo51.getText() != "")
+		if (PageEncoder.combo51.getText() != "")
 			encoderAllInit = encoder1Init + "\n" + encoder2Init + "\n"
 					+ encoder3Init + "\n" + encoder4Init + "\n" + encoder5Init;
-		else if (PageOne.combo41.getText() != "")
+		else if (PageEncoder.combo41.getText() != "")
 			encoderAllInit = encoder1Init + "\n" + encoder2Init + "\n"
 					+ encoder3Init + "\n" + encoder4Init;
-		else if (PageOne.combo31.getText() != "")
+		else if (PageEncoder.combo31.getText() != "")
 			encoderAllInit = encoder1Init + "\n" + encoder2Init + "\n"
 					+ encoder3Init;
-		else if (PageOne.combo21.getText() != "")
+		else if (PageEncoder.combo21.getText() != "")
 			encoderAllInit = encoder1Init + "\n" + encoder2Init;
 		else
 			encoderAllInit = encoder1Init;
@@ -48,28 +48,28 @@ public class SensorsSetup {
 	
 	static String getEncoderVars(){
 
-		String encoder1Init = "Encoder " + PageOne.enc1Name.getText() + ";";
+		String encoder1Init = "Encoder " + PageEncoder.enc1Name.getText() + ";";
 
-		String encoder2Init = "Encoder " + PageOne.enc2Name.getText() + ";";
+		String encoder2Init = "Encoder " + PageEncoder.enc2Name.getText() + ";";
 
-		String encoder3Init = "Encoder " + PageOne.enc3Name.getText() + ";";
+		String encoder3Init = "Encoder " + PageEncoder.enc3Name.getText() + ";";
 		
-		String encoder4Init = "Encoder " + PageOne.enc4Name.getText() + ";";
+		String encoder4Init = "Encoder " + PageEncoder.enc4Name.getText() + ";";
 		
-		String encoder5Init = "Encoder " + PageOne.enc5Name.getText() + ";";
+		String encoder5Init = "Encoder " + PageEncoder.enc5Name.getText() + ";";
 
 		String encoderAllInit;
 
-		if (PageOne.combo51.getText() != "")
+		if (PageEncoder.combo51.getText() != "")
 			encoderAllInit = encoder1Init + "\n" + encoder2Init + "\n"
 					+ encoder3Init + "\n" + encoder4Init + "\n" + encoder5Init;
-		else if (PageOne.combo41.getText() != "")
+		else if (PageEncoder.combo41.getText() != "")
 			encoderAllInit = encoder1Init + "\n" + encoder2Init + "\n"
 					+ encoder3Init + "\n" + encoder4Init;
-		else if (PageOne.combo31.getText() != "")
+		else if (PageEncoder.combo31.getText() != "")
 			encoderAllInit = encoder1Init + "\n" + encoder2Init + "\n"
 					+ encoder3Init;
-		else if (PageOne.combo21.getText() != "")
+		else if (PageEncoder.combo21.getText() != "")
 			encoderAllInit = encoder1Init + "\n" + encoder2Init;
 		else
 			encoderAllInit = encoder1Init;
@@ -157,7 +157,7 @@ public class SensorsSetup {
 		String encoder, gyro, ultrasonic, ime, lcd;
 		encoder = gyro = ultrasonic = ime = lcd = "";
 		
-		if (PageTwo.getCheckSelection(PageTwo.check1)){
+		if (PageInitial.getCheckSelection(PageInitial.check1)){
 			if (where == "initialize")
 				encoder = getEncoderCode() + "\n";
 			else if(where == "init.c")
@@ -165,7 +165,7 @@ public class SensorsSetup {
 			else if (where == "main.h")
 				encoder = "extern " + getEncoderVars() + "\n";				
 		}
-		if (PageTwo.getCheckSelection(PageTwo.check2)){
+		if (PageInitial.getCheckSelection(PageInitial.check2)){
 			if(where == "initialize")
 				gyro = gyroInit + "\n";
 			else if(where == "init.c")
@@ -173,7 +173,7 @@ public class SensorsSetup {
 			else if(where == "main.h")
 				gyro = "extern " + gyroVar + "\n";
 		}
-		if (PageTwo.getCheckSelection(PageTwo.checkUlt)){
+		if (PageInitial.getCheckSelection(PageInitial.checkUlt)){
 			if(where == "initialize")
 				ultrasonic = getUltrasonicCode() + "\n";
 			else if(where == "init.c")
@@ -181,11 +181,11 @@ public class SensorsSetup {
 			else if(where == "main.h")
 				ultrasonic = "extern " + getUltrasonicVars() + "\n";
 		}
-		if (PageTwo.getCheckSelection(PageTwo.checkIme)){
+		if (PageInitial.getCheckSelection(PageInitial.checkIme)){
 			if(where == "initialize")
 				ime = getImeCode() + "\n";
 		}
-		if (PageTwo.getCheckSelection(PageTwo.checkLcd)){
+		if (PageInitial.getCheckSelection(PageInitial.checkLcd)){
 			if(where == "initialize")
 			lcd = getLcdCode() + "\n";
 		}
@@ -196,9 +196,9 @@ public class SensorsSetup {
 	public static String getInitIOCode(){
 		String inputs = "";
 		String outputs = "";
-		if (PageTwo.checkInput.getSelection())
+		if (PageInitial.checkInput.getSelection())
 			inputs = getInputsCode() + "\n";
-		if (PageTwo.checkOutput.getSelection())
+		if (PageInitial.checkOutput.getSelection())
 			outputs = getOutputsCode() + "\n";
 		return inputs + outputs;
 	}
