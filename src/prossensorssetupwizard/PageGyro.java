@@ -1,8 +1,6 @@
 package prossensorssetupwizard;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.KeyEvent;
-import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.GridData;
@@ -38,18 +36,7 @@ public class PageGyro extends WizardPage{
 		label1.setText("Enter the desired gyroscope name");
 		gyroName = new Text(container, SWT.BORDER | SWT.SINGLE);
 		gyroName.setText("myGyro");
-		gyroName.addKeyListener(new KeyListener(){
-			@Override
-			public void keyPressed(KeyEvent e){
-			}
-			@Override
-			public void keyReleased(KeyEvent e){
-				if (!gyroName.getText().isEmpty()){
-					setPageComplete(true);
-				}
-			}
-		});
-		
+				
 		GridData gd = new GridData(SWT.LEFT, SWT.FILL, false, false);
 	    gd.widthHint = SWT.DEFAULT;
 	    gd.heightHint = SWT.DEFAULT;

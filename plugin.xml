@@ -8,18 +8,18 @@
             objectClass="org.eclipse.core.resources.IProject">
          <menu
                id="tk.Knaup.prosSensorsSetupWizard.menu1"
-               label="Setup"
+               label="VEX"
                path="additions">
             <separator
-                  name="group1">
+                  name="vex">
             </separator>
          </menu>
          <action
                class="tk.knaup.prossensorssetupwizard.popup.actions.NewAction"
                enablesFor="1"
                id="tk.Knaup.prosSensorsSetupWizard.newAction"
-               label="Sensors Setup"
-               menubarPath="tk.Knaup.prosSensorsSetupWizard.menu1/group1">
+               label="Configure Sensors"
+               menubarPath="tk.Knaup.prosSensorsSetupWizard.menu1/vex">
          </action>
       </objectContribution>
    </extension>
