@@ -19,6 +19,7 @@
 
 package prossensorssetupwizard;
 
+import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -50,14 +51,20 @@ public class PageUltrasonic extends WizardPage{
 	public static Text ult4Name;
 	public static Text ult5Name;
 	
-	boolean complete1;
-	boolean complete2;
-	public static boolean complete;
+	boolean complete1=false;
+	boolean complete2=false;
+	public static boolean complete=false;
 	
 	public PageUltrasonic(){
 		super("Ultrasonic Page");
 		setTitle("Ultrasonic Configuration");
 		setDescription("Configure up to 3 ultrasonic sensors. Leave fields blank for unused ultrasonic sensors.");
+	}
+	
+	@Override
+	public IWizardPage getPreviousPage() {
+		SetupWizard.pages--;
+		return super.getPreviousPage();
 	}
 	
 	@Override

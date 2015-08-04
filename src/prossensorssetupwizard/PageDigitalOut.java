@@ -19,6 +19,7 @@
 
 package prossensorssetupwizard;
 
+import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
@@ -39,6 +40,12 @@ public class PageDigitalOut extends WizardPage{
 		super("General Digital Output Page");
 		setTitle("Digital Output Configuration");
 		setDescription("Configure general digital outputs such as pneumatic solenoids and LEDs");
+	}
+	
+	@Override
+	public IWizardPage getPreviousPage() {
+		SetupWizard.pages--;
+		return super.getPreviousPage();
 	}
 	
 	@Override
@@ -84,11 +91,11 @@ public class PageDigitalOut extends WizardPage{
 		setPageComplete(false);
 	}
 	
-	void newSelectedPorts(){
-		for(int i=1; i<14; i++){
-			if(checkDig[i].getSelection())
-				SetupWizard.selectedPort[i] = true;
-		}
-	}
+//	void newSelectedPorts(){
+//		for(int i=1; i<14; i++){
+//			if(checkDig[i].getSelection())
+//				SetupWizard.selectedPort[i] = true;
+//		}
+//	}
 
 }

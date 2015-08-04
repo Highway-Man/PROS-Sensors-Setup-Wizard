@@ -22,6 +22,7 @@ package prossensorssetupwizard;
 
 
 
+import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -63,14 +64,20 @@ public class PageEncoder extends WizardPage {
 	public static Button enc4Rev;
 	public static Button enc5Rev;
 	
-	boolean complete1;
-	boolean complete2;
-	public static boolean complete;
+	boolean complete1= false;
+	boolean complete2=false;
+	public static boolean complete = false;
 
 	public PageEncoder(){
 		super("Encoder Page");
 		setTitle("Encoder Configuration");
 		setDescription("Configure up to 5 encoders. Leave fields blank for unused encoders.");
+	}
+	
+	@Override
+	public IWizardPage getPreviousPage() {
+		SetupWizard.pages--;
+		return super.getPreviousPage();
 	}
 	
 	@Override
@@ -106,6 +113,8 @@ public class PageEncoder extends WizardPage {
 				// TODO Auto-generated method stub
 				complete1 = true;
 				if(complete1 && complete2){
+//					SetupWizard.lastPage[SetupWizard.pageCount] = SetupWizard.encoder;
+//					SetupWizard.pageCount++;
 					setPageComplete(true);
 					complete = true;
 				}
@@ -121,6 +130,8 @@ public class PageEncoder extends WizardPage {
 				// TODO Auto-generated method stub
 				complete2 = true;
 				if(complete1 && complete2){
+//					SetupWizard.lastPage[SetupWizard.pageCount] = SetupWizard.encoder;
+//					SetupWizard.pageCount++;
 					setPageComplete(true);
 					complete = true;
 				}

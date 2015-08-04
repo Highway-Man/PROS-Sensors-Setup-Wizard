@@ -19,6 +19,7 @@
 
 package prossensorssetupwizard;
 
+import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
@@ -34,12 +35,18 @@ public class PageLcd extends WizardPage {
 	private Composite container;
 	public static Button checkLcd1;
 	public static Button checkLcd2;
-	public static boolean complete;
+	public static boolean complete=false;
 
 	public PageLcd() {
 		super("Lcd Page");
 		setTitle("LCD Configuration");
 		setDescription("Configure up to 2 LCDs on the selected uart port(s)");
+	}
+	
+	@Override
+	public IWizardPage getPreviousPage() {
+		SetupWizard.pages--;
+		return super.getPreviousPage();
 	}
 
 	@Override

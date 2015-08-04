@@ -19,6 +19,7 @@
 
 package prossensorssetupwizard;
 
+import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -34,6 +35,12 @@ public class PageEnd extends WizardPage{
 		super("Final Page");
 		setTitle("Configuration Complete");
 		setDescription("Click Finish to complete the configuration");
+	}
+	
+	@Override
+	public IWizardPage getPreviousPage() {
+		SetupWizard.pages--;
+		return super.getPreviousPage();
 	}
 	
 	@Override

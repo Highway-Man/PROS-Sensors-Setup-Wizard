@@ -19,6 +19,7 @@
 
 package prossensorssetupwizard;
 
+import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
@@ -35,7 +36,8 @@ public class PageGyro extends WizardPage{
 	
 	private Composite container;
 	public static Combo gyroPort;
-	public static boolean complete;
+	public static boolean complete = false;
+	public static Text gyroName;
 	
 	public PageGyro(){
 		super("Gyro Page");
@@ -43,7 +45,11 @@ public class PageGyro extends WizardPage{
 		setDescription("Configure a gyroscope on the selected analog port");
 	}
 	
-	public static Text gyroName;
+	@Override
+	public IWizardPage getPreviousPage() {
+		SetupWizard.pages--;
+		return super.getPreviousPage();
+	}
 	
 	@Override
 	public void createControl(Composite parent){
@@ -69,6 +75,8 @@ public class PageGyro extends WizardPage{
 			@Override
 			public void modifyText(ModifyEvent e) {
 				// TODO Auto-generated method stub
+//				SetupWizard.lastPage[SetupWizard.pageCount] = SetupWizard.gyro;
+//				SetupWizard.pageCount++;
 				setPageComplete(true);
 				complete = true;
 			}

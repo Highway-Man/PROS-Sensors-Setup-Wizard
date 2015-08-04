@@ -179,7 +179,7 @@ public class SensorsSetup {
 		String encoder, gyro, ultrasonic, ime, lcd;
 		encoder = gyro = ultrasonic = ime = lcd = "";
 				
-		if (PageInitial.getCheckSelection(PageInitial.check1)){
+		if (PageInitial.getCheckSelection(PageInitial.checkEncoder)){
 			if (where == "initialize")
 				encoder = getEncoderCode() + "\n";
 			else if(where == "init.c")
@@ -187,7 +187,7 @@ public class SensorsSetup {
 			else if (where == "main.h")
 				encoder = "extern " + getEncoderVars() + "\n";				
 		}
-		if (PageInitial.getCheckSelection(PageInitial.check2)){
+		if (PageInitial.getCheckSelection(PageInitial.checkGyro)){
 			if(where == "initialize")
 				gyro = gyroInit + "\n";
 			else if(where == "init.c")

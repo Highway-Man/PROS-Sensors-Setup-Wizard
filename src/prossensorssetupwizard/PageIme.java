@@ -19,6 +19,7 @@
 
 package prossensorssetupwizard;
 
+import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
@@ -33,12 +34,18 @@ public class PageIme extends WizardPage{
 
 	private Composite container;
 	public static Text countName;
-	public static boolean complete;
+	public static boolean complete=false;
 
 	public PageIme() {
 		super("IME Page");
 		setTitle("IME Configuration");
 		setDescription("Configure IMEs on the I2C port");
+	}
+	
+	@Override
+	public IWizardPage getPreviousPage() {
+		SetupWizard.pages--;
+		return super.getPreviousPage();
 	}
 	
 	@Override

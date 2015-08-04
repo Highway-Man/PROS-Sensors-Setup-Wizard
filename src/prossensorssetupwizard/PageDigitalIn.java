@@ -19,6 +19,7 @@
 
 package prossensorssetupwizard;
 
+import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
@@ -39,6 +40,12 @@ public class PageDigitalIn extends WizardPage{
 		super("General Digital Input Page");
 		setTitle("Digital Input Configuration");
 		setDescription("Configure general digital inputs such as buttons and limit switches");
+	}
+	
+	@Override
+	public IWizardPage getPreviousPage() {
+		SetupWizard.pages--;
+		return super.getPreviousPage();
 	}
 	
 	@Override
@@ -84,11 +91,4 @@ public class PageDigitalIn extends WizardPage{
 		setPageComplete(false);
 	}
 	
-	void newSelectedPorts(){
-		for(int i=1; i<14; i++){
-			if(checkDig[i].getSelection())
-				SetupWizard.selectedPort[i] = true;
-		}
-	}
-
 }

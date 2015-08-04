@@ -25,39 +25,40 @@ import org.eclipse.swt.widgets.Composite;
 
 import prossensorssetupwizard.performconfiguration.PerformEdits;
 
+public class SetupWizard extends Wizard {
 
-
-public class SetupWizard extends Wizard{
-	
 	public static Composite container;
-	
-	protected PageEncoder encoder;
+
+	protected static PageEncoder encoder;
 	protected PageInitial initial;
-	protected PageGyro gyro;
+	protected static PageGyro gyro;
 	protected PageUltrasonic ultrasonic;
 	protected PageIme ime;
 	protected PageLcd lcd;
 	protected PageDigitalIn input;
 	protected PageDigitalOut output;
 	protected PageEnd end;
-	
+
 	boolean canFinish = false;
-	public static boolean selectedPort[];
-	
-	public SetupWizard(){
+	// public static IWizardPage lastPage[];
+	// public static int pageCount = 1;
+	//boolean checks[];
+	public static int pages=1;
+
+	public SetupWizard() {
 		super();
 		setNeedsProgressMonitor(true);
 	}
-	
+
 	@Override
-	public String getWindowTitle(){
+	public String getWindowTitle() {
 		return "Export My Data";
 	}
-	
+
 	@Override
-	public void addPages(){
-		encoder = new PageEncoder();
+	public void addPages() {
 		initial = new PageInitial();
+		encoder = new PageEncoder();
 		gyro = new PageGyro();
 		ultrasonic = new PageUltrasonic();
 		ime = new PageIme();
@@ -75,43 +76,64 @@ public class SetupWizard extends Wizard{
 		addPage(output);
 		addPage(end);
 	}
-	
-	
+
 	@Override
 	public IWizardPage getNextPage(IWizardPage currentPage) {
-	    if (PageInitial.getCheckSelection(PageInitial.check1) && !PageEncoder.complete) 
-	       return encoder;
-	    else if (PageInitial.getCheckSelection(PageInitial.check2) && !PageGyro.complete)
-	    	return gyro;
-	    else if (PageInitial.getCheckSelection(PageInitial.checkUlt) && !PageUltrasonic.complete)
-	    	return ultrasonic;
-	    else if(PageInitial.getCheckSelection(PageInitial.checkIme) && !PageIme.complete)
-	    	return ime;
-	    else if (PageInitial.getCheckSelection(PageInitial.checkLcd) && !PageLcd.complete)
-	    	return lcd;
-	    else if (PageInitial.getCheckSelection(PageInitial.checkInput) && !PageDigitalIn.complete)
-	    	return input;
-	    else if (PageInitial.getCheckSelection(PageInitial.checkOutput) && !PageDigitalOut.complete)
-	    	return output;
-	    else{ 
-	    	canFinish = true;
-	        return end;
-	    }
-	} 
-	
+		if(pages < 1){
+			pages=1;
+			return initial;
+		}
+		if (PageInitial.getCheckSelection(PageInitial.checkEncoder) && pages < 2){
+			pages=2;
+			return encoder;
+		}
+		else if (PageInitial.getCheckSelection(PageInitial.checkGyro)
+				 && pages<3){
+			pages=3;
+			return gyro;
+		}
+		else if (PageInitial.getCheckSelection(PageInitial.checkUlt)
+				 && pages<4){
+			pages=4;
+			return ultrasonic;
+		}
+		else if (PageInitial.getCheckSelection(PageInitial.checkIme) && pages < 5){
+			pages=5;
+			return ime;
+				}
+		else if (PageInitial.getCheckSelection(PageInitial.checkLcd)
+				&&  pages<6){
+			pages=6;
+			return lcd;
+		}
+		else if (PageInitial.getCheckSelection(PageInitial.checkInput)
+				&&  pages<7){
+			pages=7;
+			return input;
+		}
+		else if (PageInitial.getCheckSelection(PageInitial.checkOutput)
+				&& pages < 8){
+			pages=8;
+			return output;
+		}
+		else {
+			pages = 9;
+			canFinish = true;
+			return end;
+		}
+	}
+
 	@Override
-	public boolean canFinish(){
+	public boolean canFinish() {
 		return canFinish;
 	}
-		
+
 	@Override
-	public boolean performFinish(){
-						
+	public boolean performFinish() {
+
 		PerformEdits.performConfiguration();
-		
+
 		return true;
 	}
-	
-	
 
 }

@@ -19,6 +19,7 @@
 
 package prossensorssetupwizard;
 
+import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
@@ -29,8 +30,8 @@ import org.eclipse.swt.widgets.Label;
 public class PageInitial extends WizardPage{
 	
 	private Composite container;
-	public static Button check2;
-	public static Button check1;
+	public static Button checkGyro;
+	public static Button checkEncoder;
 	public static Button checkUlt;
 	public static Button checkIme;
 	public static Button checkLcd;
@@ -41,7 +42,12 @@ public class PageInitial extends WizardPage{
 		super("Initial Page");
 		setTitle("Welcome to the PROS Sensors Setup Wizard");
 		setDescription("Please select the types of sensors to configure");
-		
+	}
+	
+	@Override
+	public IWizardPage getPreviousPage() {
+		SetupWizard.pages--;
+		return super.getPreviousPage();
 	}
 	
 	@Override
@@ -54,13 +60,13 @@ public class PageInitial extends WizardPage{
 		
 		Label labelCheck1 = new Label(container, SWT.NONE);
 		labelCheck1.setText("Quad Encoders");
-		check1 = new Button(container, SWT.CHECK);
-		check1.setSelection(true);
+		checkEncoder = new Button(container, SWT.CHECK);
+		checkEncoder.setSelection(true);
 		
 		Label labelCheck2 = new Label(container, SWT.NONE);
 		labelCheck2.setText("Gyroscope");
-		check2 = new Button(container, SWT.CHECK);
-		check2.setSelection(true);
+		checkGyro = new Button(container, SWT.CHECK);
+		checkGyro.setSelection(true);
 		
 		Label labelCheckUlt = new Label(container, SWT.NONE);
 		labelCheckUlt.setText("Ultrasonic");
