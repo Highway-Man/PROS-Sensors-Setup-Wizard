@@ -37,7 +37,7 @@ public class SetupWizard extends Wizard {
 	protected PageLcd lcd;
 	protected PageDigitalIn input;
 	protected PageDigitalOut output;
-	protected PageEnd end;
+	protected static PageEnd end;
 
 	boolean canFinish = false;
 	// public static IWizardPage lastPage[];
@@ -52,7 +52,7 @@ public class SetupWizard extends Wizard {
 
 	@Override
 	public String getWindowTitle() {
-		return "Export My Data";
+		return "PROS Sensors Setup Wizard";
 	}
 
 	@Override

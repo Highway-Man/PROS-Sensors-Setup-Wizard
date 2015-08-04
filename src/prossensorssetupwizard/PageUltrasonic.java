@@ -63,7 +63,7 @@ public class PageUltrasonic extends WizardPage{
 	
 	@Override
 	public IWizardPage getPreviousPage() {
-		SetupWizard.pages--;
+		SetupWizard.pages = SetupWizard.pages - 1;
 		return super.getPreviousPage();
 	}
 	
