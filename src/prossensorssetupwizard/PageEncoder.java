@@ -76,8 +76,8 @@ public class PageEncoder extends WizardPage {
 	
 	@Override
 	public IWizardPage getPreviousPage() {
-		SetupWizard.pages--;
-		return super.getPreviousPage();
+		SetupWizard.pages = SetupWizard.pages - 2;
+		return super.getNextPage();
 	}
 	
 	@Override
