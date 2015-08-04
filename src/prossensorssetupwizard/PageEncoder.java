@@ -19,9 +19,6 @@
 
 package prossensorssetupwizard;
 
-
-
-
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
@@ -35,7 +32,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Spinner;
 import org.eclipse.swt.widgets.Text;
-
 
 public class PageEncoder extends WizardPage {
 	private Text text1;
@@ -113,8 +109,6 @@ public class PageEncoder extends WizardPage {
 				// TODO Auto-generated method stub
 				complete1 = true;
 				if(complete1 && complete2){
-//					SetupWizard.lastPage[SetupWizard.pageCount] = SetupWizard.encoder;
-//					SetupWizard.pageCount++;
 					setPageComplete(true);
 					complete = true;
 				}
@@ -130,8 +124,6 @@ public class PageEncoder extends WizardPage {
 				// TODO Auto-generated method stub
 				complete2 = true;
 				if(complete1 && complete2){
-//					SetupWizard.lastPage[SetupWizard.pageCount] = SetupWizard.encoder;
-//					SetupWizard.pageCount++;
 					setPageComplete(true);
 					complete = true;
 				}

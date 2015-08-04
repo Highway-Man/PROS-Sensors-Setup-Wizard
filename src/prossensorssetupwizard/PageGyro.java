@@ -75,8 +75,6 @@ public class PageGyro extends WizardPage{
 			@Override
 			public void modifyText(ModifyEvent e) {
 				// TODO Auto-generated method stub
-//				SetupWizard.lastPage[SetupWizard.pageCount] = SetupWizard.gyro;
-//				SetupWizard.pageCount++;
 				setPageComplete(true);
 				complete = true;
 			}

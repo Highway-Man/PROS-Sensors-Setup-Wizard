@@ -40,9 +40,6 @@ public class SetupWizard extends Wizard {
 	protected static PageEnd end;
 
 	boolean canFinish = false;
-	// public static IWizardPage lastPage[];
-	// public static int pageCount = 1;
-	//boolean checks[];
 	public static int pages=1;
 
 	public SetupWizard() {
