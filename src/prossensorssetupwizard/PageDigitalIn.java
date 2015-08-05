@@ -32,25 +32,32 @@ import org.eclipse.swt.widgets.Label;
 
 public class PageDigitalIn extends WizardPage{
 	
+	//need this
 	private Composite container;
+	//array of buttons for each port
 	public static Button[] checkDig;
+	//bool to enable <next> button
 	public static Boolean complete = false;
 	
+	//set page info
 	public PageDigitalIn(){
 		super("General Digital Input Page");
 		setTitle("Digital Input Configuration");
 		setDescription("Configure general digital inputs such as buttons and limit switches");
 	}
 	
+	//update page count when <back> is clicked
 	@Override
 	public IWizardPage getPreviousPage() {
 		SetupWizard.pages--;
 		return super.getPreviousPage();
 	}
 	
+	//creates page ui
 	@Override
 	public void createControl(Composite parent) {
 		container = new Composite(parent, SWT.NONE);
+		//create layouts
 		GridLayout layout = new GridLayout();
 		container.setLayout(layout);
 		layout.numColumns = 2;
@@ -61,10 +68,12 @@ public class PageDigitalIn extends WizardPage{
 		GridData gd1 = new GridData(SWT.LEFT, SWT.FILL, false, false);
 		gd1.horizontalSpan = 1;
 		
+		//instructions
 		Label instructions = new Label(container, SWT.NONE);
 		instructions.setText("Select the ports to use as digital inputs for buttons, limit switches, etc.");
 		instructions.setLayoutData(gd2);
 
+		//create 12 check buttons and labels
 		Label[] labelPort = new Label[13];
 		checkDig = new Button[13];
 		for(int i = 1; i < 13; i++){

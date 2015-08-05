@@ -31,46 +31,60 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 
-
 public class PageGyro extends WizardPage{
 	
+	//need this
 	private Composite container;
+	//combo box to select port
 	public static Combo gyroPort;
+	//bool page complete, incomplete by default
 	public static boolean complete = false;
+	//text field for gyro name
 	public static Text gyroName;
 	
+	//set page info
 	public PageGyro(){
 		super("Gyro Page");
 		setTitle("Gyroscope Configuration");
 		setDescription("Configure a gyroscope on the selected analog port");
 	}
 	
+	//update page count for <back>
 	@Override
 	public IWizardPage getPreviousPage() {
 		SetupWizard.pages = SetupWizard.pages - 1;
 		return super.getPreviousPage();
 	}
 	
+	//create ui
 	@Override
 	public void createControl(Composite parent){
+		//layout stuff
 		container = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		container.setLayout(layout);
 		layout.numColumns = 2;
 		
+		//instructions
 		Label label1 = new Label(container, SWT.NONE);
 		label1.setText("Enter the desired gyroscope name");
+		//name text field
 		gyroName = new Text(container, SWT.BORDER | SWT.SINGLE);
 		gyroName.setText("myGyro");
-				
+		
+		//layout option
 		GridData gd = new GridData(SWT.LEFT, SWT.FILL, false, false);
 	    gd.widthHint = SWT.DEFAULT;
 	    gd.heightHint = SWT.DEFAULT;
 	    gd.horizontalSpan = 1;
-		Label labelFirstEnc = new Label(container, SWT.NONE);
-		labelFirstEnc.setText("Select the gyroscope's analog port");
+	    
+	    //instructions
+		Label label = new Label(container, SWT.NONE);
+		label.setText("Select the gyroscope's analog port");
+		//port combo drop-down box (analog 1-8)
 	    gyroPort = new Combo (container, SWT.READ_ONLY);
 		gyroPort.setItems (new String [] {"1", "2", "3", "4", "5", "6", "7", "8"});
+		//update <next> button when port selected
 		gyroPort.addModifyListener(new ModifyListener() {
 			@Override
 			public void modifyText(ModifyEvent e) {

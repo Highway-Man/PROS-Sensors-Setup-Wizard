@@ -28,8 +28,10 @@ import prossensorssetupwizard.PageEncoder;
 import prossensorssetupwizard.PageInitial;
 import prossensorssetupwizard.PageUltrasonic;
 
+//creates code to be added to PROS files
 public class SensorsSetup {
 		
+	//main encoder code; 1 string for each encoder
 	static String getEncoderCode() {
 
 		String encoder1Init = PageEncoder.enc1Name.getText().replaceAll("\\s","_") + " = encoderInit(" + PageEncoder.combo11.getText() + ","
@@ -49,6 +51,7 @@ public class SensorsSetup {
 
 		String encoderAllInit;
 
+		//only use strings for as many encoders as we are using
 		if (PageEncoder.combo51.getText() != "")
 			encoderAllInit = encoder1Init + "\n" + encoder2Init + "\n"
 					+ encoder3Init + "\n" + encoder4Init + "\n" + encoder5Init;
@@ -66,6 +69,7 @@ public class SensorsSetup {
 		return encoderAllInit;
 	}
 	
+	//generate code for encoder names 
 	static String getEncoderVars(){
 
 		String encoder1Init = "Encoder " + PageEncoder.enc1Name.getText().replaceAll("\\s","_") + ";";
@@ -80,6 +84,7 @@ public class SensorsSetup {
 
 		String encoderAllInit;
 
+		//only use as many strings as we have encoders
 		if (PageEncoder.combo51.getText() != "")
 			encoderAllInit = encoder1Init + "\n" + encoder2Init + "\n"
 					+ encoder3Init + "\n" + encoder4Init + "\n" + encoder5Init;
@@ -97,11 +102,14 @@ public class SensorsSetup {
 		return encoderAllInit;
 	}
 
+	//generate gyro init code
 	static String gyroInit = PageGyro.gyroName.getText().replaceAll("\\s","_") + " = gyroInit("
 			+ PageGyro.gyroPort.getText() + ");";
 	
+	//generate gyro struct with gyro name
 	static String gyroVar = "Gyro " + PageGyro.gyroName.getText().replaceAll("\\s","_") +";";
 
+	//ultrasonic
 	static String getUltrasonicCode() {
 
 		String ultrasonic1Init = PageUltrasonic.ult1Name.getText().replaceAll("\\s","_") + " = ultrasonicInit("
@@ -123,6 +131,7 @@ public class SensorsSetup {
 		return ultrasonic1Init;
 	}
 	
+	//ultrasonic name
 	static String getUltrasonicVars() {
 
 		String ultrasonic1Init = "Ultrasonic "
@@ -141,10 +150,12 @@ public class SensorsSetup {
 		return ultrasonic1Init;
 	}
 	
+	//ime init
 	static String getImeCode(){
 		return "int " + PageIme.countName.getText().replaceAll("\\s","_") + " = imeInitializeAll();";
 	}
 	
+	//lccd init
 	static String getLcdCode(){
 		String lcd1Init = "lcdInit(uart1);\n" + "lcdClear(uart1);";
 		String lcd2Init = "lcdInit(uart2);" + "\n" + "lcdClear(uart2);";
@@ -157,6 +168,7 @@ public class SensorsSetup {
 		else return null;
 	}
 	
+	//generate code for setting port mode to input
 	static String getInputsCode(){
 		String inputsCode = "";
 		for(int i=1; i < 13; i++){
@@ -166,6 +178,7 @@ public class SensorsSetup {
 		return inputsCode;
 	}
 	
+	//generate code for setting ports to output
 	static String getOutputsCode(){
 		String outputsCode = "";
 		for(int i=1; i<13; i++){
@@ -175,6 +188,7 @@ public class SensorsSetup {
 		return outputsCode;
 	}
 	
+	//string the code for the individual sensor types together
 	public static String getAllSensorCode(String where) {
 		String encoder, gyro, ultrasonic, ime, lcd;
 		encoder = gyro = ultrasonic = ime = lcd = "";
@@ -215,6 +229,7 @@ public class SensorsSetup {
 		return encoder + gyro + ultrasonic + ime + lcd;		
 	}
 	
+	//combine the code to go in initIO together into one string
 	public static String getInitIOCode(){
 		String inputs = "";
 		String outputs = "";

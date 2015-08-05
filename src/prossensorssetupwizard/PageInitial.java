@@ -27,9 +27,11 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 
+//this page is always displayed first
 public class PageInitial extends WizardPage{
 	
 	private Composite container;
+	//check buttons for each sensor type
 	public static Button checkGyro;
 	public static Button checkEncoder;
 	public static Button checkUlt;
@@ -38,41 +40,49 @@ public class PageInitial extends WizardPage{
 	public static Button checkInput;
 	public static Button checkOutput;
 	
+	//set page info
 	public PageInitial(){
 		super("Initial Page");
 		setTitle("Welcome to the PROS Sensors Setup Wizard");
 		setDescription("Please select the types of sensors to configure");
 	}
 	
+	//update page position when <back> pressed
 	@Override
 	public IWizardPage getPreviousPage() {
 		SetupWizard.pages = SetupWizard.pages - 1;
 		return super.getPreviousPage();
 	}
 	
+	//ui
 	@Override
 	public void createControl(Composite parent){
+		//layout stuff
 		container = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		container.setLayout(layout);
 		layout.numColumns = 2;
-		//GridData gd = new GridData(GridData.FILL_HORIZONTAL);
 		
+		//encoder label
 		Label labelCheck1 = new Label(container, SWT.NONE);
 		labelCheck1.setText("Quad Encoders");
+		//encoder check
 		checkEncoder = new Button(container, SWT.CHECK);
 		checkEncoder.setSelection(true);
 		
+		//gyro label and check
 		Label labelCheck2 = new Label(container, SWT.NONE);
 		labelCheck2.setText("Gyroscope");
 		checkGyro = new Button(container, SWT.CHECK);
 		checkGyro.setSelection(true);
 		
+		//ultrasonic " " "
 		Label labelCheckUlt = new Label(container, SWT.NONE);
 		labelCheckUlt.setText("Ultrasonic");
 		checkUlt = new Button(container, SWT.CHECK);
 		checkUlt.setSelection(true);
 		
+		//and so on . . .
 		Label labelCheckIme = new Label(container, SWT.NONE);
 		labelCheckIme.setText("IME");
 		checkIme = new Button(container, SWT.CHECK);
@@ -95,9 +105,9 @@ public class PageInitial extends WizardPage{
 		setPageComplete(true);
 	}
 	
+	//function to get check selection, could just as well call check.getSelection, but oh well
 	public static boolean getCheckSelection(Button check){
 		return check.getSelection();
 	}
 	
-
 }

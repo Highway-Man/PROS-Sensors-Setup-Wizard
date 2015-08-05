@@ -36,10 +36,13 @@ import org.eclipse.core.runtime.Status;
 
 import tk.knaup.prossensorssetupwizard.popup.actions.Selection;
 
+//adds/replaces code in main.h and init.c
 public class PerformEdits {
 
+	// var to store the project on which to perform config
 	protected static Selection selectedProject;
 
+	// function to read and replace text in file
 	public static void editFile(String fileName, String newContent,
 			String oldContent) throws CoreException {
 		final ByteArrayOutputStream os = new ByteArrayOutputStream(16384);
@@ -63,6 +66,7 @@ public class PerformEdits {
 		file.setContents(is, true, true, null);
 	}
 
+	// gets input stream from file name
 	public static InputStream getFileInputStream(String fileName)
 			throws CoreException {
 
@@ -74,16 +78,28 @@ public class PerformEdits {
 
 	}
 
+	// perform three edits; code needs to go in three places
 	public static void performConfiguration() {
-		
-		String newContentInit = SensorsSetup.getAllSensorCode("init.c") + "\n void initialize() { \n" + SensorsSetup.getAllSensorCode("initialize");
-		String newContentMain = "void operatorControl(); \n \n" + SensorsSetup.getAllSensorCode("main.h");
-		String newContentInitIO = "void initializeIO() {\n" + SensorsSetup.getInitIOCode();
-		
+
+		// add most sensor code to initialize()
+		String newContentInit = SensorsSetup.getAllSensorCode("init.c")
+				+ "\n void initialize() { \n"
+				+ SensorsSetup.getAllSensorCode("initialize");
+		// add sensor structs? to main.h
+		String newContentMain = "void operatorControl(); \n \n"
+				+ SensorsSetup.getAllSensorCode("main.h");
+		// set port states in initializeIO()
+		String newContentInitIO = "void initializeIO() {\n"
+				+ SensorsSetup.getInitIOCode();
+
+		// perform the edits
 		try {
-			editFile("init.c", newContentInit, Pattern.quote("void initialize() {"));
-			editFile("main.h", newContentMain, Pattern.quote("void operatorControl();"));
-			editFile("init.c", newContentInitIO, Pattern.quote("void initializeIO() {"));
+			editFile("init.c", newContentInit,
+					Pattern.quote("void initialize() {"));
+			editFile("main.h", newContentMain,
+					Pattern.quote("void operatorControl();"));
+			editFile("init.c", newContentInitIO,
+					Pattern.quote("void initializeIO() {"));
 		} catch (CoreException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

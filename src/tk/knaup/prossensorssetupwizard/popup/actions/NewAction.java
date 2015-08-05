@@ -29,6 +29,7 @@ import org.eclipse.ui.IWorkbenchPart;
 
 import prossensorssetupwizard.SetupWizard;
 
+//opens wizard with right-click, drop-down menu, selection VEX > configure sensors
 public class NewAction implements IObjectActionDelegate {
 
 	private Shell shell;
@@ -51,6 +52,7 @@ public class NewAction implements IObjectActionDelegate {
 	/**
 	 * @see IActionDelegate#run(IAction)
 	 */
+	//here we actually open the wizard
 	public void run(IAction action) {
 		// Instantiates and initializes the wizard
 	    SetupWizard wizard = new SetupWizard();

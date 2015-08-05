@@ -30,13 +30,12 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Spinner;
 import org.eclipse.swt.widgets.Text;
 
 public class PageEncoder extends WizardPage {
-	private Text text1;
+	//mandatory
 	private Composite container;
-	public Spinner numberQuads;
+	//create 2 drop down combos for each of 5 encoders
 	public static Combo combo11;
 	public static Combo combo12;
 	public static Combo combo21;
@@ -48,41 +47,49 @@ public class PageEncoder extends WizardPage {
 	public static Combo combo51;
 	public static Combo combo52;
 	
+	//text fields for 5 encoders
 	public static Text enc1Name;
 	public static Text enc2Name;
 	public static Text enc3Name;
 	public static Text enc4Name;
 	public static Text enc5Name;
 	
+	//reverse button for each encoder
 	public static Button enc1Rev;
 	public static Button enc2Rev;
 	public static Button enc3Rev;
 	public static Button enc4Rev;
 	public static Button enc5Rev;
 	
+	//bools to ensure 2 ports are selected for @ least 1 encoder
 	boolean complete1= false;
 	boolean complete2=false;
 	public static boolean complete = false;
 
+	//set page info
 	public PageEncoder(){
 		super("Encoder Page");
 		setTitle("Encoder Configuration");
 		setDescription("Configure up to 5 encoders. Leave fields blank for unused encoders.");
 	}
 	
+	//update page count when <back> is clicked
 	@Override
 	public IWizardPage getPreviousPage() {
 		SetupWizard.pages = SetupWizard.pages - 2;
 		return super.getNextPage();
 	}
 	
+	//create ui
 	@Override
 	public void createControl(Composite parent){
+		//layout data
 		container = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		container.setLayout(layout);
 		layout.numColumns = 4;
 		
+		//3 layout options
 		GridData gd = new GridData(SWT.LEFT, SWT.FILL, false, false);
 	    gd.widthHint = SWT.DEFAULT;
 	    gd.heightHint = SWT.DEFAULT;
@@ -94,14 +101,21 @@ public class PageEncoder extends WizardPage {
 	    GridData gdTextBox = new GridData(SWT.FILL, SWT.FILL, true, false);
 	    gdTextBox.horizontalSpan = 1;	    
 
+	    //1st encoder
 		Label labelFirstEnc = new Label(container, SWT.NONE);
+		//instructions
 		labelFirstEnc.setText("Enter the name and ports of the first quad encoder; check the box to reverse encoder counts.");
 		labelFirstEnc.setLayoutData(gdSeparator);
+		//text field for encoder name
 		enc1Name = new Text(container, SWT.BORDER | SWT.SINGLE);
+		//default name
 		enc1Name.setText("encoder1");
 		enc1Name.setLayoutData(gdTextBox);
+		//drop down combo for 1st port
 	    combo11 = new Combo (container, SWT.READ_ONLY);
+	    //port options -- no port 10
 		combo11.setItems (new String [] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "11", "12"});
+		//update <next> button when 2 ports selected
 		combo11.addModifyListener(new ModifyListener() {
 			
 			@Override
@@ -114,9 +128,11 @@ public class PageEncoder extends WizardPage {
 				}
 			}
 		});
-		
+		//drop down combo box for 2nd port
 		combo12 = new Combo (container, SWT.READ_ONLY);
+		//no port 10
 		combo12.setItems (new String [] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "11", "12"});
+		//update next button when 2 ports selected
 		combo12.addModifyListener(new ModifyListener() {
 			
 			@Override
@@ -129,12 +145,15 @@ public class PageEncoder extends WizardPage {
 				}
 			}
 		});
+		//add reversed check box
 		enc1Rev = new Button(container, SWT.CHECK);
 		enc1Rev.setLayoutData(gd);
 		
+		//horizontal line between encoders
 		Label separator = new Label(container, SWT.SEPARATOR | SWT.HORIZONTAL);
 	    separator.setLayoutData(gdSeparator);
 		
+	    //2nd encoder
 		Label label2ndEnc = new Label(container, SWT.NONE);
 		label2ndEnc.setText("Enter the name and ports of the second quad encoder");
 		label2ndEnc.setLayoutData(gdSeparator);
@@ -151,6 +170,7 @@ public class PageEncoder extends WizardPage {
 		separator = new Label(container, SWT.SEPARATOR | SWT.HORIZONTAL);
 	    separator.setLayoutData(gdSeparator);
 		
+	    //3rd encoder
 		Label label3rdEnc = new Label(container, SWT.NONE);
 		label3rdEnc.setText("Enter the name and ports of the third quad encoder");
 		label3rdEnc.setLayoutData(gdSeparator);
@@ -167,6 +187,7 @@ public class PageEncoder extends WizardPage {
 		separator = new Label(container, SWT.SEPARATOR | SWT.HORIZONTAL);
 	    separator.setLayoutData(gdSeparator);
 		
+	    //4th encoder
 		Label label4thEnc = new Label(container, SWT.NONE);
 		label4thEnc.setText("Enter the name and ports of the fourth quad encoder");
 		label4thEnc.setLayoutData(gdSeparator);
@@ -183,6 +204,7 @@ public class PageEncoder extends WizardPage {
 		separator = new Label(container, SWT.SEPARATOR | SWT.HORIZONTAL);
 	    separator.setLayoutData(gdSeparator);
 		
+	    //5th encoder
 		Label label5thEnc = new Label(container, SWT.NONE);
 		label5thEnc.setText("Enter the name and ports of the fifth quad encoder");
 		label5thEnc.setLayoutData(gdSeparator);
@@ -200,7 +222,4 @@ public class PageEncoder extends WizardPage {
 		setPageComplete(false);
 	}
 	
-	public String getText1(){
-		return text1.getText();
-	}
 }

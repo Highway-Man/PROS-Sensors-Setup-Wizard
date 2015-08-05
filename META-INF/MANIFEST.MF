@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: ProsSensorsSetupWizard
 Bundle-SymbolicName: tk.Knaup.prosSensorsSetupWizard;singleton:=true
-Bundle-Version: 0.9.1.qualifier
+Bundle-Version: 0.9.2.qualifier
 Bundle-Activator: prossensorssetupwizard.Activator
 Bundle-Vendor: Highwayman
 Require-Bundle: org.eclipse.ui,

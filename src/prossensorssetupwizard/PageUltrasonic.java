@@ -34,6 +34,7 @@ import org.eclipse.swt.widgets.Text;
 public class PageUltrasonic extends WizardPage{
 	
 	private Composite container;
+	//drop down combos - 2 per sonar, only uses 3 sonars of 5
 	public static Combo ult1PortEcho;
 	public static Combo ult1PortPing;
 	public static Combo ult2PortEcho;
@@ -45,35 +46,42 @@ public class PageUltrasonic extends WizardPage{
 	public static Combo ult5PortEcho;
 	public static Combo ult5PortPing;
 	
+	//text field for sonar names
 	public static Text ult1Name;
 	public static Text ult2Name;
 	public static Text ult3Name;
 	public static Text ult4Name;
 	public static Text ult5Name;
 	
+	//bools to enable <next>
 	boolean complete1=false;
 	boolean complete2=false;
 	public static boolean complete=false;
 	
+	//set page info
 	public PageUltrasonic(){
 		super("Ultrasonic Page");
 		setTitle("Ultrasonic Configuration");
 		setDescription("Configure up to 3 ultrasonic sensors. Leave fields blank for unused ultrasonic sensors.");
 	}
 	
+	//update page position when <back> pressed
 	@Override
 	public IWizardPage getPreviousPage() {
 		SetupWizard.pages = SetupWizard.pages - 1;
 		return super.getPreviousPage();
 	}
 	
+	//create ui
 	@Override
 	public void createControl(Composite parent){
+		//layout
 		container = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		container.setLayout(layout);
 		layout.numColumns = 2;
 		
+		//3 layout options
 		GridData gd = new GridData(SWT.LEFT, SWT.FILL, false, false);
 	    gd.widthHint = SWT.DEFAULT;
 	    gd.heightHint = SWT.DEFAULT;
@@ -87,18 +95,22 @@ public class PageUltrasonic extends WizardPage{
 	    
 	    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
+	    //instructions for sonar 1 name
 		Label label1 = new Label(container, SWT.NONE);
 		label1.setText("Enter the desired ultrasonic name");
+		//text field for sonar 1 name
 		ult1Name = new Text(container, SWT.BORDER | SWT.SINGLE);
 		ult1Name.setText("sonar1");
 		ult1Name.setLayoutData(gdTextBox);
-				
+		
+		//instructions for sonar1 echo port
 		Label labelult1Echo = new Label(container, SWT.NONE);
 		labelult1Echo.setText("Select the sonar's echo (orange cable) port");
+		//drop-down combo box for sonar1 echo port
 	    ult1PortEcho = new Combo (container, SWT.READ_ONLY);
 	    ult1PortEcho.setItems (new String [] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "11", "12"});
+	    //enable <next> when 2 ports selected
 	    ult1PortEcho.addModifyListener(new ModifyListener() {
-			
 			@Override
 			public void modifyText(ModifyEvent e) {
 				// TODO Auto-generated method stub
@@ -110,12 +122,14 @@ public class PageUltrasonic extends WizardPage{
 			}
 		});
 	    
+	    //instructions for sonar1 ping port
 	    Label labelult1Ping = new Label(container, SWT.NONE);
 		labelult1Ping.setText("Select the sonar's ping (yellow cable) port");
+		//combo box for ping port selection
 	    ult1PortPing = new Combo (container, SWT.READ_ONLY);
 	    ult1PortPing.setItems (new String [] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"});
+	    //enable <next> when both ports selected
 	    ult1PortPing.addModifyListener(new ModifyListener() {
-			
 			@Override
 			public void modifyText(ModifyEvent e) {
 				// TODO Auto-generated method stub
@@ -127,9 +141,13 @@ public class PageUltrasonic extends WizardPage{
 			}
 		});
 	    
-	    /*/////////////////////////*/Label separator = new Label(container, SWT.SEPARATOR | SWT.HORIZONTAL);
-	    separator.setLayoutData(gdSeparator);//////////////////////////////
+	    //horizontal line between sonars
+	    /////////////////////////////
+	    Label separator = new Label(container, SWT.SEPARATOR | SWT.HORIZONTAL);
+	    separator.setLayoutData(gdSeparator);
+	    //////////////////////////////
 	    
+	    //2nd sonar - see first sonar for info on specific parts
 	    Label labelUlt2Name = new Label(container, SWT.NONE);
 	    labelUlt2Name.setText("Enter the desired name for the 2nd ultrasonic sensor");
 		ult2Name = new Text(container, SWT.BORDER | SWT.SINGLE);
@@ -146,10 +164,12 @@ public class PageUltrasonic extends WizardPage{
 	    ult2PortPing = new Combo (container, SWT.READ_ONLY);
 	    ult2PortPing.setItems (new String [] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"});
 				
-	    /*/////////////////////////*/separator = new Label(container, SWT.SEPARATOR | SWT.HORIZONTAL);
-	    separator.setLayoutData(gdSeparator);//////////////////////////////
+	    /////////////////////////////
+	    separator = new Label(container, SWT.SEPARATOR | SWT.HORIZONTAL);
+	    separator.setLayoutData(gdSeparator);
+	    //////////////////////////////
 
-	    
+	    //3rd sonar - see comments on sonar1
 	    Label labelUlt3Name = new Label(container, SWT.NONE);
 	    labelUlt3Name.setText("Enter the desired name for the 3rd ultrasonic sensor");
 		ult3Name = new Text(container, SWT.BORDER | SWT.SINGLE);

@@ -29,22 +29,27 @@ import org.eclipse.swt.widgets.Label;
 
 public class PageEnd extends WizardPage{
 	
+	//need this
 	private Composite container;
 
+	//set page info
 	public PageEnd(){
 		super("Final Page");
 		setTitle("Configuration Complete");
 		setDescription("Click Finish to complete the configuration");
 	}
 	
+	//update page count for <back>
 	@Override
 	public IWizardPage getPreviousPage() {
 		SetupWizard.pages--;
 		return super.getPreviousPage();
 	}
 	
+	//create ui
 	@Override
 	public void createControl(Composite parent) {
+		//layout
 		container = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		container.setLayout(layout);
@@ -55,10 +60,12 @@ public class PageEnd extends WizardPage{
 		gd2.heightHint = SWT.DEFAULT;
 		gd2.horizontalSpan = 2;
 		
+		//just display some text
 		Label label1 = new Label(container, SWT.NONE);
 		label1.setText("The wizard will now add the selected setup code to the necessary files.");
 		label1.setLayoutData(gd2);
 
+		//final page, no <next>
 		setControl(container);
 		setPageComplete(false);
 	}

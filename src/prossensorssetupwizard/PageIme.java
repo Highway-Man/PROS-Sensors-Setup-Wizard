@@ -33,40 +33,51 @@ import org.eclipse.swt.widgets.Text;
 public class PageIme extends WizardPage{
 
 	private Composite container;
+	//text field for int that stores # of initialized imes
 	public static Text countName;
+	//<next> disabled by default
 	public static boolean complete=false;
 
+	//set page info
 	public PageIme() {
 		super("IME Page");
 		setTitle("IME Configuration");
 		setDescription("Configure IMEs on the I2C port");
 	}
 	
+	//update page count when <back> pressed
 	@Override
 	public IWizardPage getPreviousPage() {
 		SetupWizard.pages--;
 		return super.getPreviousPage();
 	}
 	
+	//create ui
 	@Override
 	public void createControl(Composite parent) {
+		//layout stuff
 		container = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		container.setLayout(layout);
 		layout.numColumns = 2;
 
+		//a layout option
 		GridData gd2 = new GridData(SWT.LEFT, SWT.FILL, true, false);
 		gd2.widthHint = SWT.DEFAULT;
 		gd2.heightHint = SWT.DEFAULT;
 		gd2.horizontalSpan = 2;
 		
+		//another layout option
 		GridData gd1 = new GridData(SWT.FILL, SWT.FILL, true, false);
 		gd1.horizontalSpan = 1;
 
+		//instructions
 		Label label1 = new Label(container, SWT.NONE);
 		label1.setText("Enter the name for the variable in which to store the number of initialized IMEs");
 		label1.setLayoutData(gd2);
+		//create text field
 		countName = new Text(container, SWT.BORDER | SWT.SINGLE);
+		//enable <next> when text entered
 		countName.addKeyListener(new KeyListener() {
 			@Override
 			public void keyReleased(KeyEvent e) {
@@ -84,6 +95,5 @@ public class PageIme extends WizardPage{
 		setControl(container);
 		setPageComplete(false);
 	}
-	
 	
 }

@@ -33,6 +33,7 @@ import org.eclipse.ui.PlatformUI;
 
 public class Selection {
 
+	//get the name of the project that the user right-clicked
 	public static String getSelectedProject(){
 		
 		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
@@ -47,6 +48,7 @@ public class Selection {
 		return activeProjectName;
 	}
 	
+	//open the necessary file from the selected project
 	public static IFile getFileInProject(String fileName){
 		
 		IWorkspaceRoot myWorkspaceRoot = ResourcesPlugin.getWorkspace()

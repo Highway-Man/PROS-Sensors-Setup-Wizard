@@ -29,6 +29,7 @@ public class SetupWizard extends Wizard {
 
 	public static Composite container;
 
+	//add protected methods for each page class
 	protected static PageEncoder encoder;
 	protected PageInitial initial;
 	protected static PageGyro gyro;
@@ -39,19 +40,24 @@ public class SetupWizard extends Wizard {
 	protected PageDigitalOut output;
 	protected static PageEnd end;
 
+	//<finish> disabled by default
 	boolean canFinish = false;
+	//initialize page count
 	public static int pages=1;
 
+	//standard for wizards
 	public SetupWizard() {
 		super();
 		setNeedsProgressMonitor(true);
 	}
 
+	//set window title
 	@Override
 	public String getWindowTitle() {
 		return "PROS Sensors Setup Wizard";
 	}
 
+	//add all possible pages
 	@Override
 	public void addPages() {
 		initial = new PageInitial();
@@ -74,6 +80,7 @@ public class SetupWizard extends Wizard {
 		addPage(end);
 	}
 
+	//get next page based on checks & current page
 	@Override
 	public IWizardPage getNextPage(IWizardPage currentPage) {
 		if(pages < 1){
@@ -120,11 +127,14 @@ public class SetupWizard extends Wizard {
 		}
 	}
 
+	//update status of <finish> button
 	@Override
 	public boolean canFinish() {
 		return canFinish;
 	}
 
+	//run performConfiguration() when <finish> is clicked
+	//edits code
 	@Override
 	public boolean performFinish() {
 

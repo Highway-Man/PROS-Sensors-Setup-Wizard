@@ -32,16 +32,21 @@ import org.eclipse.swt.widgets.Label;
 
 public class PageDigitalOut extends WizardPage{
 	
+	//need this
 	private Composite container;
-	public static Button[] checkDig;	
+	//check buttons for ports
+	public static Button[] checkDig;
+	//<next> disabled by default
 	public static boolean complete = false;
 	
+	//set page info
 	public PageDigitalOut(){
 		super("General Digital Output Page");
 		setTitle("Digital Output Configuration");
 		setDescription("Configure general digital outputs such as pneumatic solenoids and LEDs");
 	}
 	
+	//update page count when <back> clicked
 	@Override
 	public IWizardPage getPreviousPage() {
 		SetupWizard.pages--;
@@ -50,6 +55,7 @@ public class PageDigitalOut extends WizardPage{
 	
 	@Override
 	public void createControl(Composite parent) {
+		//layout data
 		container = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
 		container.setLayout(layout);
@@ -61,15 +67,20 @@ public class PageDigitalOut extends WizardPage{
 		GridData gd1 = new GridData(SWT.LEFT, SWT.FILL, false, false);
 		gd1.horizontalSpan = 1;
 		
+		//instructions
 		Label instructions = new Label(container, SWT.NONE);
 		instructions.setText("Select the ports to use as digital outputs for pneumatic solenoids, LEDs, etc.");
 		instructions.setLayoutData(gd2);
 
+		//port labels
 		Label[] labelPort = new Label[13];
+		//port checks
 		checkDig = new Button[13];
 		for(int i = 1; i < 13; i++){
+			//create a dozen checks
 			checkDig[i] = new Button(container, SWT.CHECK);
 			checkDig[i].setLayoutData(gd1);
+			//update <next> button
 			checkDig[i].addSelectionListener(new SelectionListener() {
 				@Override
 				public void widgetSelected(SelectionEvent e) {
@@ -82,6 +93,7 @@ public class PageDigitalOut extends WizardPage{
 					// TODO Auto-generated method stub
 				}
 			});
+			//create a dozen port labels
 			labelPort[i] = new Label(container, SWT.NONE);
 			labelPort[i].setText("Digital " + i);
 			labelPort[i].setLayoutData(gd1);
@@ -91,11 +103,4 @@ public class PageDigitalOut extends WizardPage{
 		setPageComplete(false);
 	}
 	
-//	void newSelectedPorts(){
-//		for(int i=1; i<14; i++){
-//			if(checkDig[i].getSelection())
-//				SetupWizard.selectedPort[i] = true;
-//		}
-//	}
-
 }
