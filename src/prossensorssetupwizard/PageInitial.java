@@ -22,6 +22,9 @@ package prossensorssetupwizard;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
@@ -96,10 +99,40 @@ public class PageInitial extends WizardPage{
 		Label labelCheckInput = new Label(container, SWT.NONE);
 		labelCheckInput.setText("General Input");
 		checkInput = new Button(container, SWT.CHECK);
+		checkInput.setSelection(true);
 		
 		Label labelCheckOutput = new Label(container, SWT.NONE);
 		labelCheckOutput.setText("General Output");
 		checkOutput = new Button(container, SWT.CHECK);
+		checkOutput.setSelection(true);
+		
+		//horizontal line
+		Label separator = new Label(container, SWT.SEPARATOR | SWT.HORIZONTAL);
+	    separator.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 2, 1));
+		
+	    //select all button
+		Button SelectAll = new Button(container, SWT.PUSH);
+		SelectAll.setText("Select All");
+		SelectAll.addSelectionListener(new SelectionListener() {
+			boolean sel = true;
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				// TODO Auto-generated method stub
+				sel = !sel;
+				
+				checkEncoder.setSelection(sel);
+				checkGyro.setSelection(sel);
+				checkUlt.setSelection(sel);
+				checkIme.setSelection(sel);
+				checkLcd.setSelection(sel);
+				checkInput.setSelection(sel);
+				checkOutput.setSelection(sel);
+			}
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {
+				// TODO Auto-generated method stub
+			}
+		});
 		
 		setControl(container);
 		setPageComplete(true);
