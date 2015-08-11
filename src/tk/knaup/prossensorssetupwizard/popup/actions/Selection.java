@@ -40,10 +40,7 @@ public class Selection {
 		IStructuredSelection selection = (IStructuredSelection)page.getSelection();
 		IResource resource = (IResource)selection.getFirstElement();
 		IProject activeProject = resource.getProject();
-		String activeProjectName = activeProject .getName();
-		//Object selObject = selection.getFirstElement();
-		//IResource resource = (IResource)Platform.getAdapterManager().getAdapter(selObject, IResource.class);
-		System.out.println(activeProjectName);
+		String activeProjectName = activeProject.getName();
 		
 		return activeProjectName;
 	}

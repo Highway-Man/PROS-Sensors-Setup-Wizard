@@ -19,6 +19,7 @@
 
 package prossensorssetupwizard.performconfiguration;
 
+import java.awt.Container;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -100,9 +101,15 @@ public class PerformEdits {
 					Pattern.quote("void operatorControl();"));
 			editFile("init.c", newContentInitIO,
 					Pattern.quote("void initializeIO() {"));
+			System.out.println("Setup code successfully added to "
+					+ Selection.getSelectedProject()
+					+ "\n Thank you for using the PROS Sensors Setup Wizard");
 		} catch (CoreException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			System.out
+					.println("There was a problem performing the sensor configuration on "
+							+ Selection.getSelectedProject());
 		}
 	}
 
