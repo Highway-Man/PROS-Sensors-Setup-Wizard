@@ -19,7 +19,6 @@
 
 package prossensorssetupwizard.performconfiguration;
 
-import java.awt.Container;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
