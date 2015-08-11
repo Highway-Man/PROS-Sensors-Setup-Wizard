@@ -48,7 +48,7 @@ public class NewAction implements IObjectActionDelegate {
 	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
 		shell = targetPart.getSite().getShell();
 	}
-
+	
 	/**
 	 * @see IActionDelegate#run(IAction)
 	 */

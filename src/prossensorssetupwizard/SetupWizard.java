@@ -21,24 +21,23 @@ package prossensorssetupwizard;
 
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.swt.widgets.Composite;
 
 import prossensorssetupwizard.performconfiguration.PerformEdits;
 
 public class SetupWizard extends Wizard {
 
-	public static Composite container;
+	//public static Composite container;
 
 	//add protected methods for each page class
-	protected static PageEncoder encoder;
+	protected PageEncoder encoder;
 	protected PageInitial initial;
-	protected static PageGyro gyro;
+	protected PageGyro gyro;
 	protected PageUltrasonic ultrasonic;
 	protected PageIme ime;
 	protected PageLcd lcd;
 	protected PageDigitalIn input;
 	protected PageDigitalOut output;
-	protected static PageEnd end;
+	protected PageEnd end;
 
 	//<finish> disabled by default
 	boolean canFinish = false;
@@ -49,6 +48,7 @@ public class SetupWizard extends Wizard {
 	public SetupWizard() {
 		super();
 		setNeedsProgressMonitor(true);
+		pages=1;
 	}
 
 	//set window title
