@@ -32,3 +32,4 @@ COMMENT: /*
  * 	along with PROS Sensors Setup Wizard.  If not, see <http://www.gnu.org/licenses/>.
  * 
  */
+Import-Package: org.eclipse.ui
