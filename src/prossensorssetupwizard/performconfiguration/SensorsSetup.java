@@ -152,8 +152,8 @@ public class SensorsSetup {
 		
 		if(where == "main.h"){
 			ultrasonic1Init = "extern " + ultrasonic1Init;
-			ultrasonic2Init = "extern " + ultrasonic1Init;
-			ultrasonic3Init = "extern " + ultrasonic1Init;
+			ultrasonic2Init = "extern " + ultrasonic2Init;
+			ultrasonic3Init = "extern " + ultrasonic3Init;
 		}
 
 		if(PageUltrasonic.ult3PortEcho.getText() != "")
