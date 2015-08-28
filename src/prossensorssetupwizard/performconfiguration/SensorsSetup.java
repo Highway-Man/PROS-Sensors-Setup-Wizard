@@ -104,7 +104,7 @@ public class SensorsSetup {
 
 	//generate gyro init code
 	static String gyroInit = PageGyro.gyroName.getText().replaceAll("\\s","_") + " = gyroInit("
-			+ PageGyro.gyroPort.getText() + ");";
+			+ PageGyro.gyroPort.getText() + ",0);";
 	
 	//generate gyro struct with gyro name
 	static String gyroVar = "Gyro " + PageGyro.gyroName.getText().replaceAll("\\s","_") +";";
