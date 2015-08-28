@@ -70,7 +70,7 @@ public class SensorsSetup {
 	}
 	
 	//generate code for encoder names 
-	static String getEncoderVars(){
+	static String getEncoderVars(String where){
 
 		String encoder1Init = "Encoder " + PageEncoder.enc1Name.getText().replaceAll("\\s","_") + ";";
 
@@ -81,6 +81,14 @@ public class SensorsSetup {
 		String encoder4Init = "Encoder " + PageEncoder.enc4Name.getText().replaceAll("\\s","_") + ";";
 		
 		String encoder5Init = "Encoder " + PageEncoder.enc5Name.getText().replaceAll("\\s","_") + ";";
+		
+		if(where == "main.h"){
+			encoder1Init = "extern " + encoder1Init;
+			encoder2Init = "extern " + encoder2Init;
+			encoder3Init = "extern " + encoder3Init;
+			encoder4Init = "extern " + encoder4Init;
+			encoder5Init = "extern " + encoder5Init;
+		}
 
 		String encoderAllInit;
 
@@ -132,8 +140,7 @@ public class SensorsSetup {
 	}
 	
 	//ultrasonic name
-	static String getUltrasonicVars() {
-
+	static String getUltrasonicVars(String where) {
 		String ultrasonic1Init = "Ultrasonic "
 				+ PageUltrasonic.ult1Name.getText().replaceAll("\\s","_") +";";
 		
@@ -142,6 +149,12 @@ public class SensorsSetup {
 		
 		String ultrasonic3Init = "Ultrasonic "
 				+ PageUltrasonic.ult3Name.getText().replaceAll("\\s","_") +";";
+		
+		if(where == "main.h"){
+			ultrasonic1Init = "extern " + ultrasonic1Init;
+			ultrasonic2Init = "extern " + ultrasonic1Init;
+			ultrasonic3Init = "extern " + ultrasonic1Init;
+		}
 
 		if(PageUltrasonic.ult3PortEcho.getText() != "")
 			return ultrasonic1Init + "\n" + ultrasonic2Init + "\n" + ultrasonic3Init;
@@ -197,9 +210,9 @@ public class SensorsSetup {
 			if (where == "initialize")
 				encoder = getEncoderCode() + "\n";
 			else if(where == "init.c")
-				encoder = getEncoderVars() + "\n";
+				encoder = getEncoderVars(where) + "\n";
 			else if (where == "main.h")
-				encoder = "extern " + getEncoderVars() + "\n";				
+				encoder = getEncoderVars(where) + "\n";				
 		}
 		if (PageInitial.getCheckSelection(PageInitial.checkGyro)){
 			if(where == "initialize")
@@ -213,9 +226,9 @@ public class SensorsSetup {
 			if(where == "initialize")
 				ultrasonic = getUltrasonicCode() + "\n";
 			else if(where == "init.c")
-				ultrasonic = getUltrasonicVars() + "\n";
+				ultrasonic = getUltrasonicVars(where) + "\n";
 			else if(where == "main.h")
-				ultrasonic = "extern " + getUltrasonicVars() + "\n";
+				ultrasonic = getUltrasonicVars(where) + "\n";
 		}
 		if (PageInitial.getCheckSelection(PageInitial.checkIme)){
 			if(where == "initialize")
