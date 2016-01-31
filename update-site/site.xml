@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/tk.Knaup.prosSensorsSetupWizard.feature_1.0.2.jar" id="tk.Knaup.prosSensorsSetupWizard.feature" version="1.0.2">
+      <category name="edu.purdue.sigbots.ros.eclipse.category"/>
+   </feature>
+   <category-def name="edu.purdue.sigbots.ros.eclipse.category" label="Purdue Robotics Operating System"/>
+</site>
